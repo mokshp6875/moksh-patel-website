@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moksh Patel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0f0f0f;
+      --bg2:     #161616;
+      --bg3:     #1e1e1e;
+      --border:  rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --text:    #ffffff;
+      --muted:   #c8b89a;
+      --soft:    #c8b89a;
+      --accent:  #c8b89a;
+      --white:   #c8b89a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.5rem;
+      background: rgba(15,15,15,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .nav-initials {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .site {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 9rem 2rem 5rem;
+    }
+
+    section { margin-bottom: 5.5rem; }
+
+    hr.divider {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin: 0 0 3.5rem;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: rgba(255,255,255,0.18);
+      margin-bottom: 1.75rem;
+      line-height: 1;
+    }
+
+    /* ── HERO ── */
+    .hero { padding-top: 1.5rem; margin-bottom: 5.5rem; }
+
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(4rem, 11vw, 7rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -4px;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 .first { color: #ffffff; }
+    .hero h1 .last  { color: var(--accent); }
+
+    /* ── META ROW ── */
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.25rem;
+    }
+
+    .hero-meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .hero-meta-value {
+      font-size: 13px;
+      font-weight: 400;
+      color: #ffffff;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 11px 22px;
+      background: var(--accent);
+      color: #0f0f0f;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-cta:hover { background: var(--white); transform: translateY(-1px); }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 14.5px;
+      color: #ffffff;
+      line-height: 1.85;
+    }
+
+    .about-text + .about-text { margin-top: 0.9rem; }
+
+    .about-text strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 1.5rem;
+    }
+
+    .pill {
+      font-size: 11px;
+      font-weight: 400;
+      padding: 5px 12px;
+      border-radius: 2px;
+      border: 0.5px solid var(--border2);
+      color: var(--muted);
+      background: var(--bg2);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      border: 0.5px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      padding: 1.6rem 1.8rem;
+      border-bottom: 0.5px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .project-card:last-child { border-bottom: none; }
+    .project-card:hover { background: var(--bg3); }
+
+    .project-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .project-badge {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 2px;
+      background: rgba(200,184,154,0.1);
+      color: var(--accent);
+      border: 0.5px solid rgba(200,184,154,0.2);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: #ffffff;
+      line-height: 1.75;
+    }
+
+    .project-tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .project-tech span {
+      font-size: 10px;
+      color: var(--soft);
+      padding: 3px 8px;
+      border: 0.5px solid var(--border);
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-intro {
+      font-size: 14.5px;
+      color: #ffffff;
+      line-height: 1.8;
+      margin-bottom: 1.75rem;
+      max-width: 460px;
+    }
+
+    .contact-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 10px 18px;
+      border: 0.5px solid var(--border2);
+      border-radius: 3px;
+      color: #ffffff;
+      text-decoration: none;
+      background: var(--bg2);
+      letter-spacing: 0.03em;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,184,154,0.05);
+    }
+
+    .contact-link svg { flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .site { padding: 6.5rem 1.25rem 4rem; }
+      .hero h1 { letter-spacing: -2px; }
+      .hero-meta { gap: 1.5rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-initials">MP</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="site">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-tag">Sophomore · Builder · Trader · ML Enthusiast</p>
+      <h1>
+        <span class="first">Moksh</span><br>
+        <span class="last">Patel.</span>
+      </h1>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <p class="hero-meta-label">Based in</p>
+          <p class="hero-meta-value">Louisiana, US</p>
+        </div>
+        <div class="hero-meta-item">
+          <p class="hero-meta-label">Currently</p>
+          <p class="hero-meta-value">Sophomore in High School</p>
+        </div>
+        <div class="hero-meta-item">
+          <p class="hero-meta-label">Open to</p>
+          <p class="hero-meta-value">Internships &amp; Opportunities</p>
+        </div>
+      </div>
+
+      <a href="#projects" class="hero-cta">
+        See my work
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label">About me</p>
+      <p class="about-text">
+        I'm a <strong>sophomore in high school</strong> who spends most of my time building things that sit at the crossroads of
+        <strong>finance, machine learning, and software</strong>. When I'm not coding, I'm paper trading, reading about
+        market microstructure, or thinking through the next model to build.
+      </p>
+      <p class="about-text">
+        I'm drawn to <strong>entrepreneurship</strong> — the idea that a small team (or one person with the right tools)
+        can build something that actually matters. AI is making that more possible than ever, and I want to be part of it.
+      </p>
+      <div class="pills">
+        <span class="pill">Python</span>
+        <span class="pill">Machine Learning</span>
+        <span class="pill">AI Building</span>
+        <span class="pill">Data Analysis</span>
+        <span class="pill">Trading &amp; Finance</span>
+        <span class="pill">Algorithmic Systems</span>
+        <span class="pill">JavaScript</span>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="section-label">What I'm building</p>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <span class="project-name">Stock Directional Model</span>
+            <span class="project-badge">Active</span>
+          </div>
+          <p class="project-desc">
+            A machine learning model that ingests technical indicators — momentum, volume, moving averages,
+            and more — to predict the near-term directional movement of a stock. Built to generate
+            actionable signals rather than just classifications.
+          </p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>ML / Sklearn</span>
+            <span>TA-Lib</span>
+            <span>pandas</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <span class="project-name">Options Flow Model</span>
+            <span class="project-badge">Active</span>
+          </div>
+          <p class="project-desc">
+            A day-trading-oriented model that calculates critical price levels — resistance zones, VWAP,
+            and key pivots — to determine optimal options contract entry points and predict
+            intraday stock movement with the precision of an institutional trader.
+          </p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Options Pricing</span>
+            <span>VWAP</span>
+            <span>Technical Analysis</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <p class="section-label">Get in touch</p>
+      <p class="contact-intro">
+        Open to conversations about projects, collaborations, or anything at the
+        intersection of tech and markets. My inbox is always open.
+      </p>
+      <div class="contact-links">
+
+        <a href="mailto:moksh6875@gmail.com" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          Email
+        </a>
+
+        <a href="https://github.com/mokshp6875/moksh-patel" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+          GitHub
+        </a>
+
+        <a href="https://www.linkedin.com/in/moksh-p-451028401/" target="_blank" rel="noopener" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          LinkedIn
+        </a>
+
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Moksh Patel</p>
+      <p>Built with Claude · Deployed on Vercel</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
